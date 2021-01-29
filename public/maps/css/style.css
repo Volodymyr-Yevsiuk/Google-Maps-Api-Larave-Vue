@@ -1,0 +1,396 @@
+body{
+    margin: 0;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    color: rgb(61, 58, 58);
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.page{
+    width:100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.google_maps{
+    width:100%;
+    height: 800px;
+    margin: 0 auto;
+}
+
+/****************
+     HEADER 
+*******************/
+
+.navigation{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(37, 36, 36);
+    color: #fff;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navBar{
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.auth_routes{
+    width: 100%;
+    max-width: 180px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.authoriazed_routes {
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.nav_link{
+    color: #fff;
+    font-size: 2em;
+}
+
+.home_nav_link{
+    font-size: 2.7em;
+}
+
+.nav_link:hover{
+    color: #fff;
+}
+
+.home_nav_link:hover{
+    text-decoration: none;
+}
+
+.box {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px 0 30px 40px; 
+    font-size: 1.6em;
+}
+
+.box p{
+    height: 50px;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 10px 0 0 5px;
+}
+
+.error-box p{
+    background-color: rgb(218, 140, 140);
+    border-color: rgb(110, 34, 34);
+    color: rgb(110, 34, 34);
+}
+
+.success-box{
+    background-color: rgb(169, 241, 127);
+    border-color: rgb(11, 63, 6);
+    color: rgb(11, 63, 6);
+}
+
+
+/***********************
+ Create Method Styles 
+ **********************/
+
+.form_div{
+    margin-top: 50px;
+    font-size: 1.6em;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.form-control{
+    width: 400px;
+    height: 40px;
+}
+
+.create_li{
+    margin-top: 25px;
+}
+
+.create_title{
+    margin-left: 25px;
+}
+
+.input-group{
+    width: 100%;
+    max-width: 300px;
+}
+
+/******************* 
+    marker_content 
+***********************/
+
+.marker_content{
+    width: 100%;
+    max-width: 700px;
+    margin: 50px 0 0 50px;
+}
+
+.marker_info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    font-size: 2em;
+}
+
+.label_marker{
+    font-weight: 600;
+}
+
+.block_info_part{
+    display: flex;
+    flex-direction: row;
+}
+
+.descr_block{
+    display: flex;
+    flex-direction: column;
+}
+
+.marker_props{
+    margin-left: 15px;
+}
+
+hr{
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 40px;
+    margin-left: 0px;
+}
+
+/**************
+ Comments 
+*****************/
+
+#comments{
+    margin-bottom: 100px;
+}
+
+.comments_margin_top{
+    margin-top: 100px;
+}
+
+#comment{
+    margin-bottom: 50px; 
+}
+
+.comment-form-comment{
+    display: flex;
+    flex-direction: column;
+}
+
+#comment_form{
+    font-size: 1.6em;
+}
+
+.commentlist{
+    padding-left: 0px;
+    margin-bottom: 100px;
+}
+
+.one_comment{
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid rgb(177, 170, 170);
+    padding: 20px 20px 20px 0;
+    margin-bottom: 50px;
+}
+
+.comment_container{
+    display: flex;
+    flex-direction: row;
+}
+
+.comment_author{
+    width: 25%;
+    display:flex;
+    flex-direction: column;
+    border-right: 1px solid rgb(177, 170, 170);
+    margin: 0 auto;
+    align-items: center;
+}
+
+.comment_data{
+    width: 75%;
+    display:flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
+
+.avatar{
+    border: 1px solid rgb(141, 131, 131);
+    padding: 5px;
+}
+
+.author_name{
+    margin-top: 5px;
+    font-size: 1.6em;
+}
+
+.comment_date{
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.comment_body{
+    font-size: 1.4em;
+}
+
+/**************
+     Admin 
+**************/
+
+.admin_routes{
+    max-width: 450px;
+}
+
+.edit_img{
+    margin-bottom: 50px;
+}
+
+.edit{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.image_input {
+    display: block;
+    position: relative;
+    width: 150px;
+    cursor: pointer;
+    border: 0;
+    height: 40px;
+    border-radius: 5px;
+    outline: 0;
+}
+.image_input:hover:after {
+    background: #5978f8;
+}
+.image_input:after {
+    transition: 200ms all ease;
+    border-bottom: 3px solid rgba(0,0,0,.2);
+    background: #3c5ff4;
+    text-shadow: 0 2px 0 rgba(0,0,0,.2);
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: 'Upload file';
+    line-height: 40px;
+    border-radius: 5px;
+}
+
+.modal-title{
+    font-weight: 600; 
+}
+
+.modal-body{
+    font-size: 1.6em;
+}
+
+.hint{
+    width: 100%;
+    max-width: 500px;
+    border: 2px solid rgb(16, 87, 63);
+    background-color: rgb(199, 255, 211);
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 25px;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+/****************
+     Login 
+****************/
+
+.content_group{
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 150px;
+    font-size: 1.6em;
+    
+}
+
+.text_field{
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+
+.text_field:last-child{
+    margin-bottom: 0px;
+}
+
+.login_ul{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgb(132, 160, 255);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.email_input{
+    width: 100%;
+    max-width: 235px;
+}
+
+.pass_input{
+    width: 100%;
+    max-width: 300px;
+}
+
+.title_login{
+    margin: 0 auto;
+    font-weight: 600;
+}
+
+.btn_login{
+    margin: 0 auto;
+}
+
+.pass_label{
+    margin-right: 10px;
+}
