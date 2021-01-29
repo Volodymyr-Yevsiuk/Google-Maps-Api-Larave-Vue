@@ -27,5 +27,3 @@ Also you need to type in console:
     <br/>php artisan db:seed
     
 
-    
-In the end, you need to type in console 'npm run dev'
