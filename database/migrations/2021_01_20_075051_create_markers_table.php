@@ -15,9 +15,10 @@ class CreateMarkersTable extends Migration
     {
         Schema::create('markers', function (Blueprint $table) {
             $table->id();
-            $table->string('position');
-            $table->text('descr');
-            $table->string('img');
+            $table->float('lat');
+            $table->float('lng');
+            $table->text('descr')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }
