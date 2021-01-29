@@ -13,7 +13,7 @@ Run this for authentificate:
    <br/> composer require laravel/jetstream
    <br/> php artisan jetstream:install livewire
     
-Add this code to 'store' method in vendor\laravel\fortify\src\http\controllers\RegisteredUserController:
+Add this code to <b>'store'</b> method, using facade DB, in vendor\laravel\fortify\src\http\controllers\RegisteredUserController:
 
     DB::table('role_user')->insert([
             'user_id' => $user->id,
