@@ -1,9 +1,9 @@
 Npm packages which you need:
    <br/> -npm i axios
-    -npm i vue
-    -npm i vue2-google-maps
-    -npm i vue-router
-    -npm i vue-loader
+    <br/>-npm i vue
+    <br/>-npm i vue2-google-maps
+    <br/>-npm i vue-router
+   <br/> -npm i vue-loader
 
 Add to env file:
     THEME=maps
