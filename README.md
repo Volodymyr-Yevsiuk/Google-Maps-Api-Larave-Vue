@@ -21,7 +21,11 @@ Add this code to 'store' method in vendor\laravel\fortify\src\http\controllers\R
      ]);
      
 Also you need to type in console:
+    <br/>composer require laravel/ui
+    <br/>php artisan ui vue
     <br/>php artisan migrate
     <br/>php artisan db:seed
+    
+
     
 In the end, you need to type in console 'npm run dev'
