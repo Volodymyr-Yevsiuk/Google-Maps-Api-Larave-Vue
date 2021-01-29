@@ -6,12 +6,12 @@ Npm packages which you need:
    <br/> -npm i vue-loader
 
 Add to env file:
-    THEME=maps
-    GOOGLE_MAPS_API_KEY=AIzaSyBjR-olNjXwUPM5WcuZYCgcOBxF61sNByU
+    <br/>THEME=maps
+   <br/> GOOGLE_MAPS_API_KEY=AIzaSyBjR-olNjXwUPM5WcuZYCgcOBxF61sNByU
    
 Run this for authentificate:
-    composer require laravel/jetstream
-    php artisan jetstream:install livewire
+   <br/> composer require laravel/jetstream
+   <br/> php artisan jetstream:install livewire
     
 Add this code to 'store' method in vendor\laravel\fortify\src\http\controllers\RegisteredUserController:
 
@@ -21,7 +21,7 @@ Add this code to 'store' method in vendor\laravel\fortify\src\http\controllers\R
      ]);
      
 Also you need to type in console:
-    php artisan migrate
-    php artisan db:seed
+    <br/>php artisan migrate
+    <br/>php artisan db:seed
     
 In the end, you need to type in console 'npm run dev'
