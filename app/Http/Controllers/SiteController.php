@@ -8,17 +8,17 @@ use Illuminate\Support\Arr;
 class SiteController extends Controller
 {
 
-    protected $m_rep; // Змінна MarkerRepository
+    protected $m_rep; // Variable MarkerRepository
 
-    protected $title = 'Default page'; // Змінна відображення назви сторінки
-    protected $template; // Змінна, яка містить шлях шаблону сторінки
-    protected $content = false; // Змінна, яка містить у собі контент сторінки
-    protected $navigation = false; // Змінна, яка містить у собі панель навігації
+    protected $title = 'Default page'; // Variable to show the title of the page
+    protected $template; //  Variable which contains the path of page template 
+    protected $content = false; // Variable which contains the page content
+    protected $navigation = false; // Variable which contains the site navigation 
 
-    protected $globalArr = [];  // Глобальний масив, який передає дані у шаблон
+    protected $globalArr = [];  // A global array that passes data to a template
 
 
-
+    // Function which return specific view for different pages
     protected function renderOutput() {
 
         $this->globalArr = Arr::add($this->globalArr, 'title', $this->title); 

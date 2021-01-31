@@ -16,8 +16,10 @@ class HomeController extends SiteController
 
     }
 
-    protected $scripts = false;
+    protected $scripts = false; // Variable for adding scripts on the page
 
+
+    // Function to display the main page of the site
     public function index()
     {   
         $this->title = 'Main page';
@@ -32,6 +34,7 @@ class HomeController extends SiteController
     }
 
 
+    // Function to display concrete marker by his id
     public function show($id)
     {
 

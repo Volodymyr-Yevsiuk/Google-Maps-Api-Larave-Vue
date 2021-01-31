@@ -60,20 +60,22 @@ export default{
     data() {
         
         return {
-            markers: [],
-            infoWindowOptions: {
+            markers: [], // list of markers
+            infoWindowOptions: { 
                 pixelOffset: {
                     width: 0,
                     height: -35
                 }
             },
-            activeMarker: {},
-            infoWindowOpened: false,
+            activeMarker: {}, // determines the marker that was clicked
+            infoWindowOpened: false, // check open/close infowindow
             markerId: 0
         }
     },
 
     created() {
+
+        // Getting the information about markers, that show in admin panel
         axios.get('/userMarkers')
             .then((response) => this.markers = response.data)
             .catch((error) => console.error(error))
@@ -92,6 +94,8 @@ export default{
                 lng: parseFloat(this.activeMarker.lng)
             }
         },
+
+        // function that works after clicking on the marker
         handleMarkerClicked(m) {
             this.activeMarker = m;
             this.infoWindowOpened = true;
@@ -101,13 +105,15 @@ export default{
             this.activeMarker = {};
             this.infoWindowOpened = false;
         },
+
+        // create the marker by click on the map
         handleMapClick(e) {
             this.markers.push({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng()
             });
         
-
+            // post request to method store in IndexAdminControllers
             axios.post('/admin/adminMarkers', {
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng()
@@ -115,6 +121,8 @@ export default{
             .then(() => console.log('Marker was created'))
             .catch((err) => console.error(err))
         },
+
+        // delete marker from map and db
         deleteMarker() {
 
             const index = this.markers.findIndex(elem => elem.id === this.markerId );
@@ -128,6 +136,7 @@ export default{
             this.activeMarker = {};
             this.infoWindowOpened = false;
 
+            // delete request to method destroy in IndexAdminController
             axios.delete('/admin/adminMarkers/'+ this.markerId)
             .then(() => console.log(`Element with id = ${this.markerId} was deleted!`))
             .catch((error) => console.error(error))

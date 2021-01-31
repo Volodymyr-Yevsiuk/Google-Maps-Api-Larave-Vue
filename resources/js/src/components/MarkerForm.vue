@@ -83,6 +83,7 @@ import axios from 'axios';
 
 export default {
     props: {
+      // property that checked Edit or Create form
         isEdit: {
             type: Boolean,
             required: true
@@ -100,6 +101,7 @@ export default {
 
     mounted() {
       
+        // If edit form, then in input fields recorded info from db
         if(this.isEdit) {
             axios.get('/api/markers/' + this.$route.params.id)
             .then((response) => {
@@ -110,7 +112,6 @@ export default {
                 this.bootstrapValidateForm();
                 this.descr = data.descr;
                 this.image = data.img;
-                console.log(typeof(this.image));
                 
             })
             .catch((error) => console.error(error))

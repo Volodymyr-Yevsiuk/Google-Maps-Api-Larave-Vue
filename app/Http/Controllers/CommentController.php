@@ -9,6 +9,7 @@ use App\Models\Comment;
 class CommentController extends SiteController
 {
 
+    // Validate and send comments to db
     public function store(Request $request) {
 
         $data = $request->except(['_token', 'comment_post_ID', 'comment_user_ID']);

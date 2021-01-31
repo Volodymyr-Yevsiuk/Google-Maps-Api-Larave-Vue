@@ -10,6 +10,8 @@ use App\Models\Marker;
 
 class UserMarkersController extends Controller
 {
+
+    // Function which return info about markers for different roles of users
     public function index() {
 
         $userId = Auth::user()->id;

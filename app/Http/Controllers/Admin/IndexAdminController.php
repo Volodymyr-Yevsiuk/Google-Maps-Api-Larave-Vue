@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Repositories\MarkerRepository;
 use App\Http\Requests\MarkerRequest;
@@ -13,7 +12,7 @@ use App\Models\Marker;
 class IndexAdminController extends Controller
 {
 
-    protected $m_rep;
+    protected $m_rep; // Variable MarkerRepository
 
     public function __construct(MarkerRepository $m_rep) {
 
@@ -31,6 +30,7 @@ class IndexAdminController extends Controller
         if(Gate::denies('VIEW_PERSONAL_MARKERS')) {
             return redirect('/login');
         }
+
 
         return view(config('settings.theme').'.layouts.admin');
     }
@@ -57,6 +57,7 @@ class IndexAdminController extends Controller
             return redirect ('/login');
         }
 
+        // MarkerRepository function which add marker to db
         $this->m_rep->addMarker($request);
 
     }
@@ -98,6 +99,7 @@ class IndexAdminController extends Controller
         
         $marker = Marker::find($id);
 
+        // MarkerRepository function which update marker 
         $this->m_rep->updateMarker($request, $marker);
 
     }
@@ -116,6 +118,7 @@ class IndexAdminController extends Controller
 
         $marker = Marker::find($id);
 
+        // MarkerRepository function which delete marker 
         $this->m_rep->deleteMarker($marker);
 
     }

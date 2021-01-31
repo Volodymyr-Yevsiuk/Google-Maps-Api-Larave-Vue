@@ -2004,6 +2004,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       markers: [],
+      // list of markers
       infoWindowOptions: {
         pixelOffset: {
           width: 0,
@@ -2011,13 +2012,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       activeMarker: {},
+      // determines the marker that was clicked
       infoWindowOpened: false,
+      // check open/close infowindow
       markerId: 0
     };
   },
   created: function created() {
     var _this = this;
 
+    // Getting the information about markers, that show in admin panel
     axios__WEBPACK_IMPORTED_MODULE_0___default().get('/userMarkers').then(function (response) {
       return _this.markers = response.data;
     })["catch"](function (error) {
@@ -2037,6 +2041,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         lng: parseFloat(this.activeMarker.lng)
       };
     },
+    // function that works after clicking on the marker
     handleMarkerClicked: function handleMarkerClicked(m) {
       this.activeMarker = m;
       this.infoWindowOpened = true;
@@ -2046,11 +2051,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.activeMarker = {};
       this.infoWindowOpened = false;
     },
+    // create the marker by click on the map
     handleMapClick: function handleMapClick(e) {
       this.markers.push({
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
-      });
+      }); // post request to method store in IndexAdminControllers
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/admin/adminMarkers', {
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
@@ -2060,6 +2067,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return console.error(err);
       });
     },
+    // delete marker from map and db
     deleteMarker: function deleteMarker() {
       var _this2 = this;
 
@@ -2069,7 +2077,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var newArr = [].concat(_toConsumableArray(this.markers.slice(0, index)), _toConsumableArray(this.markers.slice(index + 1)));
       this.markers = newArr;
       this.activeMarker = {};
-      this.infoWindowOpened = false;
+      this.infoWindowOpened = false; // delete request to method destroy in IndexAdminController
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().delete('/admin/adminMarkers/' + this.markerId).then(function () {
         return console.log("Element with id = ".concat(_this2.markerId, " was deleted!"));
       })["catch"](function (error) {
@@ -2119,8 +2128,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 //
 //
 //
@@ -2204,6 +2211,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    // property that checked Edit or Create form
     isEdit: {
       type: Boolean,
       required: true
@@ -2221,6 +2229,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   mounted: function mounted() {
     var _this = this;
 
+    // If edit form, then in input fields recorded info from db
     if (this.isEdit) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/markers/' + this.$route.params.id).then(function (response) {
         var data = response.data;
@@ -2232,7 +2241,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
         _this.descr = data.descr;
         _this.image = data.img;
-        console.log(_typeof(_this.image));
       })["catch"](function (error) {
         return console.error(error);
       });

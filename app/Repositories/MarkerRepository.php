@@ -26,6 +26,8 @@ class MarkerRepository extends Repository {
         if($request->hasFile('image')) {
             
             $image = $request->file('image');
+
+            // resize uploaded image
             if($image->isValid()){
                 $img = Image::make($image);
                 $str = Str::random(5);
@@ -51,10 +53,11 @@ class MarkerRepository extends Repository {
             return ['error'=>'No data'];
         }
 
-
+        
         if($request->hasFile('image')) {
             
             $image = $request->file('image');
+            // resize uploaded image
             if($image->isValid()){
                 $img = Image::make($image);
                 $str = Str::random(5);
@@ -74,6 +77,7 @@ class MarkerRepository extends Repository {
 
     public function deleteMarker($marker) {
 
+        // delete information about comments
         $marker->comments()->delete();
 
         $marker->delete(); 
