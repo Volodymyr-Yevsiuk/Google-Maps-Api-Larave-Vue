@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -62,41 +61,38 @@ class User extends Authenticatable
     ];
 
 
-    public function roles() {
+    public function roles() 
+    {
         return $this->belongsToMany('App\Models\Role', 'role_user');
     }
 
-    public function markers() {
+    public function markers() 
+    {
         return $this->hasMany('App\Models\Marker');
     }
 
-    public function canDo($permission, $require = false) {
-        if(is_array($permission)) {
-            foreach($permission as $permName) {
+    public function canDo($permission, $require = false) 
+    {
+        if (is_array($permission)) {
+            foreach ($permission as $permName) { 
 
                 $permName = $this->canDo($permName);
-                if($permName && !$require) {
+                if ($permName && !$require) {
                     return true;
                 }
-                else if(!$permName && $require) {
+                else if (!$permName && $require) {
                     return false;
                 }
-
             }
             return $require;
-        }
-        else {
-            foreach($this->roles as $role) {
-                foreach($role->perms as $perm) {
-                    if(Str::is($permission, $perm->name)) {
+        } else {
+            foreach ($this->roles as $role) {
+                foreach ($role->perms as $perm) {
+                    if (Str::is($permission, $perm->name)) {
                         return true;
                     }
                 }
             }
         }
-    }
-
-    public function check() {
-        dd($this->roles);
     }
 }

@@ -8,7 +8,7 @@
 
   import MarkerForm from './MarkerForm';
 
-  export default{
+  export default {
     name: 'CreateMarker',
     components: { MarkerForm }
   }

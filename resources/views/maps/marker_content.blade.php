@@ -1,4 +1,4 @@
-@if($marker)
+@if ($marker)
     <div class="marker_content">
         <h2 class="title">Info about marker</h2>
         <div class="marker_info">
@@ -23,7 +23,7 @@
                     <li id="descr" class="marker_props">{{ $marker->descr }}</li>
                 </div>
                 <hr/>
-                @if($marker->img)
+                @if ($marker->img)
                     <div class="block_info_part descr_block">
                         <label for="img" class="label_marker">Image of this place: </label>
                         <li id="img" class="marker_props">
@@ -40,9 +40,9 @@
                 <span>{{ count($marker->comments) }}</span> {{ trans_choice('en.comments', count($marker->comments)) }}    
             </h3>
             <hr/>
-            @if(count($marker->comments) > 0)
+            @if (count($marker->comments) > 0)
                 <ol class="commentlist group">
-                    @foreach($comments as $comment)
+                    @foreach ($comments as $comment)
 
                         @include(config('settings.theme').'.comment', ['item' => $comment])
 

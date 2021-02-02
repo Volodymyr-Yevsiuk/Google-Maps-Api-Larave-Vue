@@ -1933,18 +1933,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 //
 //
 //
@@ -2018,15 +2006,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       markerId: 0
     };
   },
-  created: function created() {
-    var _this = this;
-
-    // Getting the information about markers, that show in admin panel
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/userMarkers').then(function (response) {
-      return _this.markers = response.data;
-    })["catch"](function (error) {
-      return console.error(error);
-    });
+  mounted: function mounted() {
+    this.getMarkers();
+  },
+  updated: function updated() {
+    // if markers are updated, then we get info about them from db again
+    this.getMarkers();
   },
   methods: {
     getPosition: function getPosition(marker) {
@@ -2053,11 +2038,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     // create the marker by click on the map
     handleMapClick: function handleMapClick(e) {
-      this.markers.push({
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng()
-      }); // post request to method store in IndexAdminControllers
-
+      // post request to method store in IndexAdminControllers
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/admin/adminMarkers', {
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
@@ -2069,18 +2050,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     // delete marker from map and db
     deleteMarker: function deleteMarker() {
-      var _this2 = this;
+      var _this = this;
 
-      var index = this.markers.findIndex(function (elem) {
-        return elem.id === _this2.markerId;
-      });
-      var newArr = [].concat(_toConsumableArray(this.markers.slice(0, index)), _toConsumableArray(this.markers.slice(index + 1)));
-      this.markers = newArr;
       this.activeMarker = {};
       this.infoWindowOpened = false; // delete request to method destroy in IndexAdminController
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().delete('/admin/adminMarkers/' + this.markerId).then(function () {
-        return console.log("Element with id = ".concat(_this2.markerId, " was deleted!"));
+        return console.log("Element with id = ".concat(_this.markerId, " was deleted!"));
       })["catch"](function (error) {
         return console.error(error);
       });
@@ -2094,6 +2070,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     closeModal: function closeModal() {
       this.$refs.modal.style.display = 'none';
+    },
+    getMarkers: function getMarkers() {
+      var _this2 = this;
+
+      // Getting the information about markers, that show in admin panel
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/userMarkers').then(function (response) {
+        return _this2.markers = response.data;
+      })["catch"](function (error) {
+        return console.error(error);
+      });
     }
   },
   computed: {

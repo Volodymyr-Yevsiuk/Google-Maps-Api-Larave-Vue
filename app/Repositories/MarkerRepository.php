@@ -6,29 +6,27 @@ use App\Models\Marker;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 
-class MarkerRepository extends Repository {
-	
-	public function __construct(Marker $marker) {
-
+class MarkerRepository extends Repository 
+{
+    public function __construct(Marker $marker) 
+    {
         $this->model = $marker;
-
     }
-
     
-    public function addMarker($request) {
-
+    public function addMarker($request) 
+    {
         $data = $request->except(['_token', 'image']);
 
-        if(empty($data)) {
+        if (empty($data)) {
             return ['error'=>'No data'];
         }
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             
             $image = $request->file('image');
 
             // resize uploaded image
-            if($image->isValid()){
+            if ($image->isValid()){
                 $img = Image::make($image);
                 $str = Str::random(5);
                 $img_name = $str.'.jpg';
@@ -44,21 +42,19 @@ class MarkerRepository extends Repository {
         $request->user()->markers()->save($this->model);
     }
 
-
-    public function updateMarker($request, $marker) {
-        
+    public function updateMarker($request, $marker) 
+    {
         $data = $request->except(['_token', 'image', '_method']);
         
-        if(empty($data)) {
+        if (empty($data)) {
             return ['error'=>'No data'];
         }
-
         
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             
             $image = $request->file('image');
             // resize uploaded image
-            if($image->isValid()){
+            if ($image->isValid()){
                 $img = Image::make($image);
                 $str = Str::random(5);
                 $img_name = $str.'.jpg';
@@ -74,18 +70,11 @@ class MarkerRepository extends Repository {
         $marker->update();
     }
 
-
-    public function deleteMarker($marker) {
-
+    public function deleteMarker($marker) 
+    {
         // delete information about comments
         $marker->comments()->delete();
 
         $marker->delete(); 
     }
-
-
-	
 }
-
-
-?>

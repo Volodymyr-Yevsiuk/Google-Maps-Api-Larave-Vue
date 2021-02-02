@@ -15,13 +15,11 @@
         <script src="{{ asset(config('settings.theme')) }}/js/bootstrap-filestyle.min.js"></script>
         <script type="text/javascript" src="{{ asset(config('settings.theme')) }}/js/jquery-ui.js"></script>
         
-        
         @yield('scripts')
         
     </head>
     <body>
         <div class="page">
-
             <div class="navigation">
                 @yield('navigation')
             </div>

@@ -73,12 +73,17 @@ export default{
         }
     },
 
-    created() {
+    mounted() {
 
-        // Getting the information about markers, that show in admin panel
-        axios.get('/userMarkers')
-            .then((response) => this.markers = response.data)
-            .catch((error) => console.error(error))
+        this.getMarkers();
+
+    },
+
+    updated() {
+        
+        // if markers are updated, then we get info about them from db again
+        this.getMarkers();
+
     },
 
     methods: {
@@ -108,10 +113,6 @@ export default{
 
         // create the marker by click on the map
         handleMapClick(e) {
-            this.markers.push({
-                lat: e.latLng.lat(),
-                lng: e.latLng.lng()
-            });
         
             // post request to method store in IndexAdminControllers
             axios.post('/admin/adminMarkers', {
@@ -125,14 +126,6 @@ export default{
         // delete marker from map and db
         deleteMarker() {
 
-            const index = this.markers.findIndex(elem => elem.id === this.markerId );
-
-            const newArr = [
-                ...this.markers.slice(0, index),
-                ...this.markers.slice(index + 1)
-            ];
-
-            this.markers = newArr;
             this.activeMarker = {};
             this.infoWindowOpened = false;
 
@@ -154,6 +147,13 @@ export default{
 
         closeModal() {
             this.$refs.modal.style.display = 'none';
+        },
+
+        getMarkers() {
+            // Getting the information about markers, that show in admin panel
+            axios.get('/userMarkers')
+            .then((response) => this.markers = response.data)
+            .catch((error) => console.error(error))
         }
     },
 

@@ -11,11 +11,13 @@ class Marker extends Model
 
     protected $fillable = ['lat', 'lng', 'descr', 'img'];
 
-    public function user() {
+    public function user() 
+    {
         return $this->belongsTo('App\Models\User');
     }
 
-    public function comments() {
+    public function comments() 
+    {
         return $this->hasMany('App\Models\Comment');
     }
 }

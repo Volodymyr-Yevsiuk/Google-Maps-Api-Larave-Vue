@@ -6,18 +6,15 @@ use Illuminate\Support\Facades\Gate;
 use App\Repositories\MarkerRepository;
 use App\Http\Requests\MarkerRequest;
 use App\Http\Controllers\Controller;
-
 use App\Models\Marker;
 
 class IndexAdminController extends Controller
 {
-
     protected $m_rep; // Variable MarkerRepository
 
-    public function __construct(MarkerRepository $m_rep) {
-
+    public function __construct(MarkerRepository $m_rep) 
+    {
         $this->m_rep = $m_rep;
-
     }
 
     /**
@@ -27,10 +24,9 @@ class IndexAdminController extends Controller
      */
     public function index()
     {
-        if(Gate::denies('VIEW_PERSONAL_MARKERS')) {
+        if (Gate::denies('VIEW_PERSONAL_MARKERS')) {
             return redirect('/login');
         }
-
 
         return view(config('settings.theme').'.layouts.admin');
     }
@@ -53,13 +49,12 @@ class IndexAdminController extends Controller
      */
     public function store(MarkerRequest $request)
     {
-        if(Gate::denies('CREATE_MARKERS')) {
+        if (Gate::denies('CREATE_MARKERS')) {
             return redirect ('/login');
         }
 
         // MarkerRepository function which add marker to db
         $this->m_rep->addMarker($request);
-
     }
 
     /**
@@ -93,7 +88,7 @@ class IndexAdminController extends Controller
      */
     public function update(MarkerRequest $request, $id)
     {
-        if(Gate::denies('UPDATE_MARKER')) {
+        if (Gate::denies('UPDATE_MARKER')) {
             return redirect ('/login');
         }
         
@@ -101,7 +96,6 @@ class IndexAdminController extends Controller
 
         // MarkerRepository function which update marker 
         $this->m_rep->updateMarker($request, $marker);
-
     }
 
     /**
@@ -112,7 +106,7 @@ class IndexAdminController extends Controller
      */
     public function destroy($id)
     {
-        if(Gate::denies('DELETE_MARKER')) {
+        if (Gate::denies('DELETE_MARKER')) {
             return redirect ('/login');
         }
 
@@ -120,6 +114,5 @@ class IndexAdminController extends Controller
 
         // MarkerRepository function which delete marker 
         $this->m_rep->deleteMarker($marker);
-
     }
 }

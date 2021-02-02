@@ -8,25 +8,22 @@ use App\Models\Comment;
 
 class CommentController extends SiteController
 {
-
     // Validate and send comments to db
-    public function store(Request $request) {
-
+    public function store(Request $request) 
+    {
         $data = $request->except(['_token', 'comment_post_ID', 'comment_user_ID']);
 
         $data['marker_id'] = $request->input('comment_post_ID');
         $data['user_id'] = $request->input('comment_user_ID');
 
         $validator = Validator::make($data, [
-
             'marker_id' => 'integer|required',
             'text' => 'string|required',
             'name' => 'string|required',
             'email' => 'email|required'
-
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
@@ -34,9 +31,8 @@ class CommentController extends SiteController
 
         $comment->fill($data);
 
-        if($comment->save()) {
+        if ($comment->save()) {
             return back();
         }   
-
     }
 }

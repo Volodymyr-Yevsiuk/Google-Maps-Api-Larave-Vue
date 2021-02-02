@@ -11,11 +11,13 @@ class Comment extends Model
 
     protected $fillable = ['name', 'text', 'user_id', 'marker_id', 'email'];
 
-    public function marker() {
+    public function marker() 
+    {
         return $this->belongsTo('App\Models\Marker');
     }
 
-    public function user() {
+    public function user() 
+    {
         return $this->belongsTo('App\Models\User');
     }
 }

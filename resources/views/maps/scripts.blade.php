@@ -20,45 +20,40 @@
 </style>
 <script>
 
-    function initMap() {
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 6,
-          center: {lat: 50.449218, lng: 30.525824},
-        });
+  function initMap() 
+  {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 6,
+      center: {lat: 50.449218, lng: 30.525824},
+    });
 
-        axios.get('/api/markers')
-          .then((response) => {
-              return OutputFromDB(response.data, map)
-          })
-          .catch((error) => console.log(error))
-
-        
-    }
+    axios.get('/api/markers')
+      .then((response) => {
+          return OutputFromDB(response.data, map)
+      })
+      .catch((error) => console.log(error))
+  }
 
   
-      function OutputFromDB(data, map) {
-        data.forEach((item) => {
-          let latLng = {lat: item.lat, lng: item.lng};
-          const marker = new google.maps.Marker({
-          position: latLng,
-          map: map,
-          });
+  function OutputFromDB(data, map) 
+  {
+    data.forEach((item) => {
+      let latLng = {lat: item.lat, lng: item.lng};
+      const marker = new google.maps.Marker({
+      position: latLng,
+      map: map,
+      });
 
-          let contentString = `<a href="/markers/${item.id}">View marker information</a>`;
+      let contentString = `<a href="/markers/${item.id}">View marker information</a>`;
 
-          const infowindow = new google.maps.InfoWindow({
-            content: contentString,
-          });
+      const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+      });
 
-          marker.addListener("click", (e) => {
-            infowindow.open(map, marker);
-            console.log(marker);
-          });
-        });
-      }
-
-
-
+      marker.addListener("click", (e) => {
+        infowindow.open(map, marker);
+        console.log(marker);
+      });
+    });
+  }
 </script>
-
-
