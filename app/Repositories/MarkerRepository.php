@@ -54,7 +54,7 @@ class MarkerRepository extends Repository
             
             $image = $request->file('image');
             // resize uploaded image
-            if ($image->isValid()){
+            if ($image->isValid()) {
                 $img = Image::make($image);
                 $str = Str::random(5);
                 $img_name = $str.'.jpg';
