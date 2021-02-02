@@ -6,3 +6,4 @@ abstract class Repository
 {
 	protected $model = FALSE;
 }
+
